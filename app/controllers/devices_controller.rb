@@ -9,6 +9,8 @@ class DevicesController < ApplicationController
       new_device_owner_id: params[:new_device_owner_id]
     ).call
     head :ok
+  rescue RegistrationError::Unauthorized
+    render json: { error: 'Unauthorized' }, status: :unauthorized
   end
 
   def unassign
