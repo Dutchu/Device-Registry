@@ -12,7 +12,7 @@ class AssignDeviceToUser
 
     device = Device.find_or_create_by!(serial_number: serial_number)
 
-    if DeviceAssigment.exists?(device: device, user_id: new_device_owner_id, returned_at: !nil)
+    if device.previous_owner_ids.include?(new_device_owner_id)
       raise AssigningError::AlreadyUsedOnUser
     end
 
