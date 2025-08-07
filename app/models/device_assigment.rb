@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class DeviceAssigment < ActiveRecord
+class DeviceAssigment < ApplicationRecord
   belongs_to :device
   belongs_to :user
 end
