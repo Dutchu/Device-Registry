@@ -13,6 +13,8 @@ class ReturnDeviceFromUser
     return unless device
 
     if device.user_id == from_user_id
+      device.previous_owner_ids << from_user_id
+      device.save!
       device.update!(user_id: nil)
     end
   end

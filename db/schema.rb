@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_06_182014) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_07_154957) do
   create_table "api_keys", force: :cascade do |t|
     t.integer "bearer_id", null: false
     t.string "bearer_type", null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_06_182014) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.text "previous_owner_ids"
     t.index ["user_id"], name: "index_devices_on_user_id"
   end
 
