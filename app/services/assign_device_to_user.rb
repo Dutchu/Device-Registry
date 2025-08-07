@@ -13,11 +13,7 @@ class AssignDeviceToUser
     device = Device.find_or_create_by!(serial_number: serial_number)
 
     if DeviceAssignment.exists?(device_id: device.id, returned_at: nil)
-      if device.user_id == new_device_owner_id
-        raise AssigningError::AlreadyUsedOnUser
-      else
-        raise AssigningError::AlreadyUsedOnOtherUser
-      end
+      raise AssigningError::AlreadyUsedOnOtherUser # Or a more generic "AlreadyAssigned" error
     end
 
     if DeviceAssignment.exists?(device_id: device.id, user_id: new_device_owner_id, returned_at: !nil)
@@ -29,7 +25,7 @@ class AssignDeviceToUser
       user_id: new_device_owner_id
     )
 
-    device.update!(user_id: new_device_owner_id)
+    # device.update!(user_id: new_device_owner_id)
   end
 
   private

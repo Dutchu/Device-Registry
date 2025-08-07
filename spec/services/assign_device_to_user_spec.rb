@@ -27,7 +27,6 @@ RSpec.describe AssignDeviceToUser do
 
     it 'creates a new device' do
       assign_device
-
       expect(user.devices.pluck(:serial_number)).to include(serial_number)
     end
 
