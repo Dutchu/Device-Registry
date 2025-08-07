@@ -2,6 +2,7 @@
 
 class DevicesController < ApplicationController
   before_action :authenticate_user!, only: %i[assign unassign]
+
   def assign
     AssignDeviceToUser.new(
       requesting_user: @current_user,

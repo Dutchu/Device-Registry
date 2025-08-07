@@ -6,7 +6,6 @@ RSpec.describe DevicesController, type: :controller do
   let(:api_key) { create(:api_key) }
   let(:user) { api_key.bearer }
 
-
   describe 'POST #assign' do
     subject(:assign) do
       post :assign,
@@ -15,10 +14,11 @@ RSpec.describe DevicesController, type: :controller do
     end
     context 'when the user is authenticated' do
       context 'when user assigns a device to another user' do
-        let(:new_owner_id) { create(:user).id }
+        let(:other_user) { create(:user) }
+        let(:new_owner_id) { other_user.id }
 
         it 'returns an unauthorized response' do
-          expect(response.code).to eq(422)
+          expect(response.code).to eq("422")
           expect(JSON.parse(response.body)).to eq({ 'error' => 'Unauthorized' })
         end
       end
